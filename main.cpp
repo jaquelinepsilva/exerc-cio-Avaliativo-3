@@ -6,18 +6,33 @@ aplicado considerando juros simples, montante ao final do período considerando 
 conversão da taxa de juros de ao ano para ao mês.*/
 #include <iostream>
 #include <stdio.h>
+#include <math.h>
 
 using namespace std;
 
-float deposito,taxaJuros,rendimento,montanteFinal;
+float capital,taxaJuros,rendimento,montanteFinal,montante,juros;
+int tempo;
 
-float jurosSimples( float deposito,float taxaJuros)
+// funçao juros simples.
+float jurosSimples( float capital,float taxaJuros, int tempo)
 {
-    float rendimento = (deposito * taxaJuros)/100;
-    float montanteFinal = rendimento + deposito;
+    float rendimento = (capital * tempo * taxaJuros)/100;
+    float montanteFinal = rendimento + capital;
 
     return montanteFinal;
 
+}
+//____________juros Composto_________________
+float jurosComposto( float montante, float capital)
+{
+  float juros = montante - capital;
+  return juros;
+}
+float caluloMontante( float capital, int tempo, float taxaJuros)
+{
+  float montante = capital *
+  pow ((1 + (taxaJuros/100)),tempo);
+  return montante;
 }
 
 
@@ -26,14 +41,19 @@ float jurosSimples( float deposito,float taxaJuros)
 int main() {
   inicio:
   cout << "\n\n.       * * * Investimentos * * *\n"<< endl;
-  cout << "Digite o valor do deposito:\n" << endl;
-  cin >> deposito;
-  cout << "Digie o valor da Taxa de juros? \n"<< endl;
+  cout << "Digite o valor do Capital?:" << endl;
+  cin >> capital;
+  cout << "Digie o valor da Taxa de juros? "<< endl;
   cin >> taxaJuros;
+  cout << "Durante quantos meses deseja aplicar o dinheiro?:"<< endl;
+  cin >> tempo;
 
-montanteFinal = jurosSimples(deposito,taxaJuros);
+montanteFinal = jurosSimples(capital,taxaJuros, tempo);
+  cout << "\nO Montante final aplicado ao juros simples é\n" << montanteFinal<< endl;
 
+  montante = caluloMontante(capital, tempo,  taxaJuros);
+cout << "\nO valor investido a juros composto será: "<< montante << endl;
 
-  cout << "O Montante final é:\n" << montanteFinal<< endl;
-
+juros = jurosComposto(montante, capital);
+cout << "\nO juros total será:" << juros << endl;
 }
