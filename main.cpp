@@ -5,65 +5,25 @@ A sua biblioteca deverá ter funções que executem as seguintes operações: Mo
 aplicado considerando juros simples, montante ao final do período considerando juros compostos e a
 conversão da taxa de juros de ao ano para ao mês.*/
 #include <iostream>
-#include <stdio.h>
-#include <math.h>
-
-using namespace std;
-
-float capital,taxaAnual,rendimento,montanteFinal,montante,juros;
-int tempo;
-
-// Montante ao final do período aplicado considerando juros simples,
-void jurosSimples( float capital,float taxaAnual, int tempo)
-{
-    float rendimento = (capital * tempo * taxaAnual)/100;
-    float montanteFinal = rendimento + capital;
-
-    
-     cout << "\nO Montante final aplicado ao juros simples é\n" << montanteFinal<< endl;
-
-}
-//montante ao final do período considerando juros composto
-
-void caluloMontante( float capital, int tempo, float taxaAnual)
-{
-  float montante = capital * pow ((1 + (taxaAnual/100)),tempo);
-  cout << "\nO valor investido a juros composto será: "<< montante << endl;
-
-  float juros = montante - capital;
-  cout << "\nO juros total será:" << juros << endl;
- 
-}
-// conversão da taxa de juros de ao ano para ao mês
-
-void jurosMesAno(float taxaAnual){
-  
-  float x = (100+taxaAnual);
-  float y =x/100;
-  float w = 1/12;
-  float z = pow(y, w);
-  float taxaMensal = x;
-
-  cout << taxaAnual <<"\n% "<< "Em taxa mensal será:   "<< taxaMensal<< "%";
-}
-
+#include "investimento.cpp"
 
 
 int main() {
   
   cout << "\n\n.       * * * Calculo de Investimentos * * *\n"<< endl;
-  cout << "Digite o valor do Capital?:" << endl;
-  cin >> capital;
-  cout << "Digie o valor da Taxa de juros? "<< endl;
-  cin >> taxaAnual;
-  cout << "Durante quantos anos deseja aplicar o dinheiro?:"<< endl;
-  cin >> tempo;
+  tInvestimento novoinvestmento;
+  cout << "Digite o valor do Capital a ser investido?:" << endl;
+  cin >> novoinvestmento.capital;
+  cout << "Digite o valor da Taxa de juros ao ano? "<< endl;
+  cin >> novoinvestmento.taxaAnual;
+  cout << "Digite o periodo do investimentos em anos?:"<< endl;
+  cin >> novoinvestmento.tempo;
 
-  jurosSimples(capital,taxaAnual, tempo);
+  novoinvestmento.jurosSimples(novoinvestmento.capital,novoinvestmento.taxaAnual, novoinvestmento.tempo);
  
 
-  caluloMontante(capital, tempo,  taxaAnual);
+  novoinvestmento.caluloMontante(novoinvestmento.capital, novoinvestmento.tempo,  novoinvestmento.taxaAnual);
 
-  jurosMesAno(taxaAnual);
+  novoinvestmento.jurosMesAno(novoinvestmento.taxaAnual);
 
 }
