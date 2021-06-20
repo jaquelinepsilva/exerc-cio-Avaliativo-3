@@ -10,50 +10,60 @@ conversão da taxa de juros de ao ano para ao mês.*/
 
 using namespace std;
 
-float capital,taxaJuros,rendimento,montanteFinal,montante,juros;
+float capital,taxaAnual,rendimento,montanteFinal,montante,juros;
 int tempo;
 
-// funçao juros simples.
-float jurosSimples( float capital,float taxaJuros, int tempo)
+// Montante ao final do período aplicado considerando juros simples,
+void jurosSimples( float capital,float taxaAnual, int tempo)
 {
-    float rendimento = (capital * tempo * taxaJuros)/100;
+    float rendimento = (capital * tempo * taxaAnual)/100;
     float montanteFinal = rendimento + capital;
 
-    return montanteFinal;
+    
+     cout << "\nO Montante final aplicado ao juros simples é\n" << montanteFinal<< endl;
 
 }
-//____________juros Composto_________________
-float jurosComposto( float montante, float capital)
+//montante ao final do período considerando juros composto
+
+void caluloMontante( float capital, int tempo, float taxaAnual)
 {
+  float montante = capital * pow ((1 + (taxaAnual/100)),tempo);
+  cout << "\nO valor investido a juros composto será: "<< montante << endl;
+
   float juros = montante - capital;
-  return juros;
+  cout << "\nO juros total será:" << juros << endl;
+ 
 }
-float caluloMontante( float capital, int tempo, float taxaJuros)
-{
-  float montante = capital *
-  pow ((1 + (taxaJuros/100)),tempo);
-  return montante;
-}
+// conversão da taxa de juros de ao ano para ao mês
 
+void jurosMesAno(float taxaAnual){
+  
+  float x = (100+taxaAnual);
+  float y =x/100;
+  float w = 1/12;
+  float z = pow(y, w);
+  float taxaMensal = x;
+
+  cout << taxaAnual <<"\n% "<< "Em taxa mensal será:   "<< taxaMensal<< "%";
+}
 
 
 
 int main() {
-  inicio:
-  cout << "\n\n.       * * * Investimentos * * *\n"<< endl;
+  
+  cout << "\n\n.       * * * Calculo de Investimentos * * *\n"<< endl;
   cout << "Digite o valor do Capital?:" << endl;
   cin >> capital;
   cout << "Digie o valor da Taxa de juros? "<< endl;
-  cin >> taxaJuros;
-  cout << "Durante quantos meses deseja aplicar o dinheiro?:"<< endl;
+  cin >> taxaAnual;
+  cout << "Durante quantos anos deseja aplicar o dinheiro?:"<< endl;
   cin >> tempo;
 
-montanteFinal = jurosSimples(capital,taxaJuros, tempo);
-  cout << "\nO Montante final aplicado ao juros simples é\n" << montanteFinal<< endl;
+  jurosSimples(capital,taxaAnual, tempo);
+ 
 
-  montante = caluloMontante(capital, tempo,  taxaJuros);
-cout << "\nO valor investido a juros composto será: "<< montante << endl;
+  caluloMontante(capital, tempo,  taxaAnual);
 
-juros = jurosComposto(montante, capital);
-cout << "\nO juros total será:" << juros << endl;
+  jurosMesAno(taxaAnual);
+
 }
