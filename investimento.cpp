@@ -1,10 +1,8 @@
-//usar struct e vetores...
 #include <iostream>
 #include <stdio.h>
 #include <math.h>
 
 using namespace std;
-
 
 struct tInvestimento{
  float capital,taxaAnual,rendimento,montanteFinal,montante,juros;
@@ -25,7 +23,7 @@ void jurosSimples( float capital,float taxaAnual, int tempo)
 }
 //montante ao final do período considerando juros composto
 
-void caluloMontante( float capital, int tempo, float taxaAnual)
+void JurosComposto( float capital, int tempo, float taxaAnual)
 {
   float montante = capital * pow ((1 + (taxaAnual/100)),tempo);
 
@@ -45,7 +43,7 @@ void jurosMesAno(float taxaAnual){
    
   float x = (1+(taxaAnual/100));
   //0.0833 é a divisao 1/12.
-  float z = pow(x,0.083333);
+  float z = pow(x,0.0833333333333334);
   float y = z - 1;
   //multiplicando por 100 para sair em %.
   float w = y * 100;

@@ -22,7 +22,7 @@ int main() {
   novoinvestmento.jurosSimples(novoinvestmento.capital,novoinvestmento.taxaAnual, novoinvestmento.tempo);
  
 
-  novoinvestmento.caluloMontante(novoinvestmento.capital, novoinvestmento.tempo,  novoinvestmento.taxaAnual);
+  novoinvestmento.JurosComposto(novoinvestmento.capital, novoinvestmento.tempo,  novoinvestmento.taxaAnual);
 
   novoinvestmento.jurosMesAno(novoinvestmento.taxaAnual);
 
